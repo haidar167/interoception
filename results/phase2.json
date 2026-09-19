@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-09-19T15:37:34.034328Z",
+  "seed": 42,
+  "git_commit": "4c004dbb82eb2eca5751d214449a073dc8bdf444",
+  "phase": 2,
+  "models": {
+    "baseline": {
+      "accuracy": 0.9746000170707703,
+      "ece": 0.004720295006036713,
+      "brier": 0.03902818947991965
+    },
+    "post_hoc_probe": {
+      "accuracy": 0.9746000170707703,
+      "ece": 0.4408835705766393,
+      "brier": 0.230764188176717
+    },
+    "interoceptive_detached": {
+      "accuracy": 0.9764999747276306,
+      "ece": 0.005719837048649722,
+      "brier": 0.03552807764188078
+    },
+    "interoceptive_end_to_end": {
+      "accuracy": 0.9728000164031982,
+      "ece": 0.002841750639677,
+      "brier": 0.04151246484252224
+    }
+  },
+  "execution_time_seconds": 278.0305345058441
+}
