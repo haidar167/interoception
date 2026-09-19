@@ -1,5 +1,6 @@
-﻿"""Unit tests for model definitions and replay buffers."""
+"""Unit tests for model definitions and replay buffers."""
 
+import math
 import pytest
 import torch
 from interoception.models import (
@@ -79,3 +80,21 @@ def test_replay_buffers_strict_memory_cap():
     xr_samp, yr_samp = reservoir.sample(32)
     assert xr_samp.shape == (32, 64)
     assert yr_samp.shape == (32,)
+
+
+def test_tiny_causal_transformer():
+    from interoception.phase4_transformer import (
+        TinyCausalTransformer,
+        compute_activation_entropy,
+    )
+
+    model = TinyCausalTransformer(vocab_size=16, d_model=32, nhead=2, num_layers=1)
+    x = torch.randint(0, 16, (4, 10))
+    logits, hidden = model(x)
+
+    assert logits.shape == (4, 10, 16)
+    assert hidden.shape == (4, 10, 32)
+
+    ent = compute_activation_entropy(hidden[0, -1, :])
+    assert ent > 0.0
+    assert not math.isnan(ent)

@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-09-19T15:45:50.241400Z",
+  "seed": 42,
+  "git_commit": "7773eef419084f140629c687e59e168050db7688",
+  "phase": 4,
+  "task": "reversed_sequence_copy",
+  "seq_len": 4,
+  "vocab_size": 12,
+  "test_samples": 400,
+  "entropy_threshold": 4.555269479751587,
+  "standard_exact_match_accuracy": 0.4125,
+  "introspective_exact_match_accuracy": 0.4125,
+  "accuracy_delta": 0.0,
+  "introspective_triggers_activated": 939,
+  "execution_time_seconds": 30.327576160430908
+}
