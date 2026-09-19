@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-09-19T15:30:23.945062Z",
+  "seed": 42,
+  "git_commit": "19566621d35bcea84065d0b3c28385bb33451be4",
+  "phase": 1,
+  "test_accuracy": 0.9746,
+  "total_test_samples": 10000,
+  "total_errors": 254,
+  "auc_confidence_only": 0.965296277629779,
+  "auc_internal_stats_only": 0.7062513499892002,
+  "auc_all_features": 0.9605218158254735,
+  "execution_time_seconds": 99.8708860874176
+}
