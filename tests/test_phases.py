@@ -1,4 +1,4 @@
-﻿"""Tests for phase module functions and data utilities."""
+"""Tests for phase module functions and data utilities."""
 
 import pytest
 import torch
@@ -21,10 +21,11 @@ def test_train_baseline_model_quick():
 
 
 def test_load_mnist_data_shapes():
-    """Verify load_mnist_data returns valid train/test data loaders."""
-    train_loader, test_loader = load_mnist_data(batch_size=32)
+    """Verify load_mnist_data returns valid train/test data loaders and input dimension."""
+    train_loader, test_loader, input_dim = load_mnist_data(batch_size=32)
     assert train_loader is not None
     assert test_loader is not None
+    assert input_dim in (784, 64)
     images, labels = next(iter(test_loader))
     assert images.shape[0] <= 32
-    assert images.shape[1] == 784
+    assert images.shape[1] == input_dim
