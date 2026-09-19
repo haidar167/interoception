@@ -1,6 +1,9 @@
-﻿"""Neural network architectures for baseline and interoceptive models."""
+﻿"""Neural network architectures and replay buffers for baseline and interoceptive models."""
 
-from typing import Optional, Tuple
+import collections
+import random
+from typing import List, Optional, Tuple
+import numpy as np
 import torch
 import torch.nn as nn
 from interoception.features import extract_internal_stats
@@ -90,7 +93,6 @@ class InteroceptiveNet(nn.Module):
 
         self.fc1 = nn.Linear(input_dim, hidden_dim)
         self.relu = nn.ReLU()
-        # Hidden dimension + 4 internal stats
         self.fc2 = nn.Linear(hidden_dim + 4, num_classes)
 
     def compute_stats(self, h: torch.Tensor) -> torch.Tensor:
@@ -122,3 +124,73 @@ class InteroceptiveNet(nn.Module):
         h_augmented = torch.cat([hidden, stats], dim=1)
         logits = self.fc2(h_augmented)
         return logits, hidden, stats
+
+
+class FIFOReplayBuffer:
+    """Bounded FIFO Replay Buffer strictly enforcing memory capacity."""
+
+    def __init__(self, capacity: int = 500) -> None:
+        self.capacity = capacity
+        self.buffer = collections.deque(maxlen=capacity)
+
+    def add(self, x: torch.Tensor, y: torch.Tensor) -> None:
+        """Add batch of samples."""
+        if x.dim() == 1:
+            x = x.unsqueeze(0)
+        if y.dim() == 0:
+            y = y.unsqueeze(0)
+        for xi, yi in zip(x, y):
+            self.buffer.append((xi.detach().clone(), yi.detach().clone()))
+            assert len(self.buffer) <= self.capacity, f"Buffer exceeded capacity {self.capacity}"
+
+    def sample(self, batch_size: int) -> Tuple[Optional[torch.Tensor], Optional[torch.Tensor]]:
+        """Uniformly sample a batch from buffer."""
+        if len(self.buffer) == 0:
+            return None, None
+        k = min(batch_size, len(self.buffer))
+        batch = random.sample(list(self.buffer), k)
+        xs = torch.stack([b[0] for b in batch])
+        ys = torch.stack([b[1] for b in batch])
+        return xs, ys
+
+    def __len__(self) -> int:
+        return len(self.buffer)
+
+
+class ReservoirReplayBuffer:
+    """Bounded Reservoir Replay Buffer strictly enforcing memory capacity."""
+
+    def __init__(self, capacity: int = 500) -> None:
+        self.capacity = capacity
+        self.buffer: List[Tuple[torch.Tensor, torch.Tensor]] = []
+        self.total_seen = 0
+
+    def add(self, x: torch.Tensor, y: torch.Tensor) -> None:
+        """Add batch of samples using reservoir sampling."""
+        if x.dim() == 1:
+            x = x.unsqueeze(0)
+        if y.dim() == 0:
+            y = y.unsqueeze(0)
+        for xi, yi in zip(x, y):
+            self.total_seen += 1
+            item = (xi.detach().clone(), yi.detach().clone())
+            if len(self.buffer) < self.capacity:
+                self.buffer.append(item)
+            else:
+                idx = random.randint(0, self.total_seen - 1)
+                if idx < self.capacity:
+                    self.buffer[idx] = item
+            assert len(self.buffer) <= self.capacity, f"Buffer exceeded capacity {self.capacity}"
+
+    def sample(self, batch_size: int) -> Tuple[Optional[torch.Tensor], Optional[torch.Tensor]]:
+        """Uniformly sample a batch from buffer."""
+        if len(self.buffer) == 0:
+            return None, None
+        k = min(batch_size, len(self.buffer))
+        batch = random.sample(self.buffer, k)
+        xs = torch.stack([b[0] for b in batch])
+        ys = torch.stack([b[1] for b in batch])
+        return xs, ys
+
+    def __len__(self) -> int:
+        return len(self.buffer)
