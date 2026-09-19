@@ -1,7 +1,37 @@
-﻿__pycache__/
+﻿# Byte-compiled / optimized / DLL files
+__pycache__/
 *.py[cod]
 *$py.class
+
+# Caches and runtime data
 .pytest_cache/
-data/
-*.egg-info/
 .coverage
+.coverage.*
+htmlcov/
+*.log
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Datasets & checkpoints (local only)
+data/
+checkpoints/
+*.pt
+*.pth
+
+# Environments
+env/
+venv/
+.venv/
+ENV/
+
+# IDE & OS files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

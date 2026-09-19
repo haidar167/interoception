@@ -1,4 +1,10 @@
-﻿# INTEROCEPTION: Neural Networks That Sense Their Own Confusion
+# INTEROCEPTION: Neural Networks That Sense Their Own Confusion
+
+[![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
+[![Tests](https://img.shields.io/badge/tests-12%2F12%20passing-brightgreen)](tests/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Hardware](https://img.shields.io/badge/hardware-CPU%20only-success)]()
 
 ![Reliability Diagram](figures/phase2_reliability.png)
 
