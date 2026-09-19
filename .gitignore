@@ -1,37 +1,7 @@
-﻿# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Caches and runtime data
-.pytest_cache/
-.coverage
-.coverage.*
-htmlcov/
-*.log
-
-# Distribution / packaging
-build/
-dist/
-*.egg-info/
-.eggs/
-
-# Datasets & checkpoints (local only)
-data/
-checkpoints/
+﻿__pycache__/
+*.pyc
 *.pt
-*.pth
-
-# Environments
-env/
+data/
+.pytest_cache/
 venv/
 .venv/
-ENV/
-
-# IDE & OS files
-.idea/
-.vscode/
-*.swp
-*.swo
-.DS_Store
-Thumbs.db
