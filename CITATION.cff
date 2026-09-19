@@ -1,0 +1,10 @@
+﻿cff-version: 1.2.0
+title: "Interoception: Neural Networks That Sense Their Own Confusion"
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+authors:
+  - family-names: "ali"
+    given-names: "Haidar"
+repository-code: "https://github.com/haidar167/interoception"
+version: 1.0.0
+date-released: "2025-01-01"
