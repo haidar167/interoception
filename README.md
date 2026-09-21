@@ -179,3 +179,18 @@ python -m interoception.phase1
 # Run Phase 2 calibration benchmark
 python -m interoception.phase2
 ```
+
+---
+
+## 🌐 The Neural Self-Awareness Continuum
+
+| # | Project | Biological Analogy | Core Capability | Live Link |
+|---|---|---|---|---|
+| **1** | **[Interoception](https://haidar167.github.io/interoception/)** | Internal visceral sensing | Senses internal confusion via hidden activation stats | [GitHub](https://github.com/haidar167/interoception) |
+| **2** | **[Proprioception](https://haidar167.github.io/proprioception/)** | Body substrate awareness | Senses weight damage & localizes corrupted layers | [GitHub](https://github.com/haidar167/proprioception) |
+| **3** | **[Meta-Interoception](https://haidar167.github.io/meta-interoception/)** | Metacognitive monitoring | Monitors the calibration of its own self-monitors | [GitHub](https://github.com/haidar167/meta-interoception) |
+| **4** | **[Nociception](https://haidar167.github.io/nociception/)** | Pain-driven help seeking | Spends limited human supervision budget on likely errors | [GitHub](https://github.com/haidar167/nociception) |
+| **5** | **[SOMNIA](https://haidar167.github.io/somnia/)** | Targeted sleep consolidation | Dreams targeted examples to patch its own weak spots | [GitHub](https://github.com/haidar167/somnia) |
+
+---
+*Part of the Neural Self-Awareness research continuum by [haidar167](https://github.com/haidar167).*
