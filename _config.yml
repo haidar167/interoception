@@ -1,0 +1,7 @@
+theme: jekyll-theme-primer
+title: "INTEROCEPTION"
+description: "AI that knows when it's wrong — machine interoception with internal activation statistics"
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
